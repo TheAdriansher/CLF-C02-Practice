@@ -1,0 +1,10 @@
+name: Validar banco
+on: [push, pull_request]
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/build.py
+      - name: Verificar que los archivos generados estén al día
+        run: git diff --exit-code
